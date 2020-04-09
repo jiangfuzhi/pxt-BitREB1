@@ -313,7 +313,7 @@ namespace BitRover {
                 result = pins.digitalReadPin(DigitalPin.P15);
                 break;
         }
-        if (result == 1) {
+        if (result == 0) {
             return true;
         }
         else {
