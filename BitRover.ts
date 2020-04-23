@@ -73,9 +73,9 @@ namespace BitRover {
 
     function initPCA9685(): void {
         i2cwrite(PCA9685_ADDRESS, MODE1, 0x00)
-        setFrequency(1000);
-        setPwm(0, 0, 4095);
-        for (let idx = 1; idx < 16; idx++) {
+        setFrequency(50);
+        //setPwm(0, 0, 4095);
+        for (let idx = 0; idx < 16; idx++) {
             setPwm(idx, 0, 0);
         }
         initialized = true
@@ -84,10 +84,11 @@ namespace BitRover {
     function setFrequency(freq: number): void {
         // Constrain the frequency
         let prescaleval = 25000000;
-        prescaleval /= 4096;
-        prescaleval /= freq;
-        prescaleval -= 1;
-        let prescale = prescaleval; //Math.Floor(prescaleval + 0.5);
+        prescaleval /= 4096;//6103.5
+        prescaleval /= freq;//122.07
+        //prescaleval -= 1;//121.07
+        //let prescale = prescaleval; //Math.Floor(prescaleval + 0.5);
+        let prescale = (prescaleval + 6);
         let oldmode = i2cread(PCA9685_ADDRESS, MODE1);
         let newmode = (oldmode & 0x7F) | 0x10; // sleep
         i2cwrite(PCA9685_ADDRESS, MODE1, newmode); // go to sleep
@@ -110,6 +111,30 @@ namespace BitRover {
         pins.i2cWriteBuffer(PCA9685_ADDRESS, buf);
     }
 
+	/**
+	 * Servo Execute
+	 * @param Speed [-100-100] Speed of servo; eg: 10
+	*/
+    //% blockId=Bit.REB_servo block="360 Servo channel|%channel|Speed %degree"
+    //% channel eg: 0
+    //% Speed eg：0
+    //% weight=85
+    //% Speed.min=-100 Speed.max=100
+    export function Servo(channel: number, Speed: number): void {
+        if (channel < 0 || channel > 15)
+            return;
+        if (!initialized) {
+            initPCA9685()
+        }
+        // 50hz: 20,000 us
+        //let cur_speed = (-180 * Speed)/255+180 //-255~0  0-1500  255-2500
+        //let v_us = (Speed * 1800 / 180 + 600) // 0.6 ~ 2.4
+        let cur_speed = (-180 * Speed) / 100 + 180
+        let v_us = (Math.floor((cur_speed) * 2000 / 350) + 500)
+        let value = v_us * 4096 / 20000
+        setPwm(channel, 0, value)
+    }
+    
     /**
 	 * Execute single motors 
 	 * @param speed [-255-255] speed of motor; eg: 50
@@ -136,8 +161,8 @@ namespace BitRover {
                 setPwm(2, speed, 0)
                 setPwm(3, 0, 4095)
             } else if (speed == 0) {
-                setPwm(2, 0, 4095)
-                setPwm(3, 0, 4095)
+                setPwm(2, 0, 0)
+                setPwm(3, 0, 0)
             } else {
                 setPwm(2, 0, 4095)
                 setPwm(3, -speed, 0)
@@ -147,8 +172,8 @@ namespace BitRover {
                 setPwm(0, 0, 4095)
                 setPwm(1, speed, 0)
             } else if (speed == 0) {
-                setPwm(0, 0, 4095)
-                setPwm(1, 0, 4095)
+                setPwm(0, 0, 0)
+                setPwm(1, 0, 0)
             } else {
                 setPwm(0, -speed, 0)
                 setPwm(1, 0, 4095)
@@ -159,8 +184,8 @@ namespace BitRover {
                 setPwm(5, speed, 0)
                 setPwm(4, 0, 4095)
             } else if (speed == 0) {
-                setPwm(5, 0, 4095)
-                setPwm(4, 0, 4095)
+                setPwm(5, 0, 0)
+                setPwm(4, 0, 0)
             } else {
                 setPwm(5, 0, 4095)
                 setPwm(4, -speed, 0)
@@ -171,8 +196,8 @@ namespace BitRover {
                 setPwm(7, 0, 4095)
                 setPwm(6, speed, 0)
             } else if (speed == 0) {
-                setPwm(7, 0, 4095)
-                setPwm(6, 0, 4095)
+                setPwm(7, 0, 0)
+                setPwm(6, 0, 0)
             } else {
                 setPwm(7, -speed, 0)
                 setPwm(6, 0, 4095)
@@ -288,7 +313,7 @@ namespace BitRover {
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function RunDelay(index: Dir, speed: number, time: number): void {
         Run(index, speed);
-        basic.pause(time * 1000);
+        basic.pause(time * 50);
         StopAllMotor();
     }
 
