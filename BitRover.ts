@@ -12,15 +12,7 @@ enum Motors {
     M4 = 0x4,
 }
 
-/**
- * The user defines the motor rotation direction.
- */
-enum Dir_Stepper {
-    //% blockId="CW" block="CW"
-    CW = 1,
-    //% blockId="CCW" block="CCW"
-    CCW = -1,
-}
+
 
 /**
  * The user can select a two-path stepper motor controller.
@@ -32,10 +24,7 @@ enum Steppers {
     M2 = 0x2
 }
 
-enum DirRotate {
-    left,
-    right
-}
+
 /**
  * Custom blocks
  */
@@ -119,6 +108,23 @@ namespace BitREB {
         backward,
         //% block=" down-right"
         downright,
+    }
+
+    /**
+     * The user defines the motor rotation direction.
+     */
+    export enum Dir_Stepper {
+        //% blockId="CW" block="CW"
+        CW = 1,
+        //% blockId="CCW" block="CCW"
+        CCW = -1,
+    }
+
+    export enum DirRotate {
+        //% blockId="DirRotate.left" block="left"
+        left,
+        //% blockId="DirRotate.right" block="right"
+        right
     }
 
     let initialized = false

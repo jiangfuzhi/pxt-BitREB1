@@ -1,15 +1,16 @@
 {
-    "name": "pxt-bitrover",
+    "name": "bitrover",
     "version": "0.0.0",
     "description": "",
     "dependencies": {
         "core": "*",
-        "neopixel": "github:microsoft/pxt-neopixel#v0.6.10",
+        "neopixel": "github:microsoft/pxt-neopixel#v0.6.12",
         "pxt-ch-ir": "github:jiangfuzhi/pxt-ch-ir#5b461ad665e70bb1f99509916a4b96784d81dfb8"
     },
     "files": [
         "README.md",
-        "BitRover.ts"
+        "BitRover.ts",
+        "_locales/zh/bitrover-strings.json"
     ],
     "testFiles": [
         "test.ts"
