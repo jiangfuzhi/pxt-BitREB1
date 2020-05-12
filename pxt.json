@@ -4,7 +4,8 @@
     "description": "",
     "dependencies": {
         "core": "*",
-        "neopixel": "github:microsoft/pxt-neopixel#v0.6.10"
+        "neopixel": "github:microsoft/pxt-neopixel#v0.6.10",
+        "IR": "github:jiangfuzhi/pxt-ch-ir#5b461ad665e70bb1f99509916a4b96784d81dfb8"
     },
     "files": [
         "README.md",
