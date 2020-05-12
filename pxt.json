@@ -4,7 +4,7 @@
     "description": "",
     "dependencies": {
         "core": "*",
-        "neopixel": "github:jiangfuzhi/pxt-neopixel#5906a04cb1d28eee470449392a2d429e1c7da325",
+        "neopixel": "github:jiangfuzhi/pxt-ch-neopixel#643301cf25791238430319928c7e23c977cf736a",
         "pxt-ch-ir": "github:jiangfuzhi/pxt-ch-ir#5b461ad665e70bb1f99509916a4b96784d81dfb8"
     },
     "files": [
