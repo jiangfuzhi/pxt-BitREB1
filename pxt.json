@@ -10,7 +10,7 @@
     "files": [
         "README.md",
         "BitRover.ts",
-        "_locales/zh/bitrover-strings.json"
+        "_locales/zh/BitREB-strings.json"
     ],
     "testFiles": [
         "test.ts"
