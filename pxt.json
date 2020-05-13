@@ -4,8 +4,8 @@
     "description": "",
     "dependencies": {
         "core": "*",
-        "pxt-ch-neopixel": "github:jiangfuzhi/pxt-ch-neopixel#643301cf25791238430319928c7e23c977cf736a",
-        "pxt-ch-ir": "github:jiangfuzhi/pxt-ch-ir#aa080568a9654f25fa7163109974ef42346846a1"
+        "neopixel": "github:jiangfuzhi/pxt-ch-neopixel#09e5094603753d18fa1546170f1c2a3820319959",
+        "ir": "github:jiangfuzhi/pxt-ch-ir#e8c869d0949317f1e2427f2da3144f1894b84397"
     },
     "files": [
         "README.md",
