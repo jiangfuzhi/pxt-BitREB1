@@ -29,8 +29,6 @@
   "BitREB.stepperTurn_28|block": "28 步进电机|%index|转向为|%direction|旋转|%turn|圈",
   "BitREB.stepperTurn_28_speed_time|block": "28 步进电机%index 转向为 %direction 转速至 %speed 持续 %time 秒",
   "BitREB.Dir_Stepper.CW|block": "正向",
-  "BitREB.Dir_Stepper.CCW|block": "反向",
-  "BitREB.DirRotate.left|block": "左",
-  "BitREB.DirRotate.right|block": "右"
+  "BitREB.Dir_Stepper.CCW|block": "反向"
   
 }
